@@ -19,31 +19,53 @@ No hace falta llamar a las herramientas a mano: le hablás a Claude normalmente 
 
 ## Ejemplos
 
-**Qué tengo pendiente**
-> ¿Qué entregas tengo en los próximos días?
+Estas respuestas son conversaciones reales con Claude Code.
+
+### Bajar el material de una unidad
+
+> Podés pasarme los archivos de las unidades 4 y 5 de Informática Industrial?
+
+Claude usa `materias` para encontrar la materia, `contenido_materia` para ubicar los recursos y `leer` para descargarlos:
 
 ```
-03/11/2026 23:59 | AM2 | TP 3 - Integrales dobles vence
-05/11/2026 18:00 | SyO | Cuestionario Unidad 4 cierra
-10/11/2026 23:59 | Física II | Informe de laboratorio vence
+Descargué los 4 PDFs en ~/Downloads/campus/ y abren bien:
+
+Unidad 4: Planificación y Programación de la Producción
+- Apuntes de clase: Unidad_4_Produccion_Apunte.pdf (16 págs)
+- Presentación: U4_Planificacion_Produccion_Teoria.pdf (24 págs)
+
+Unidad 5: Control de Gestión y Business Intelligence
+- Apuntes de clase: Unidad_5_Control_de_Gestion_Apunte.pdf (16 págs)
+- Presentación: Unidad_5_Control_de_Gestion_Teoria.pdf (16 págs)
 ```
 
-**Avisos de una materia**
-> ¿Hay avisos nuevos en Sistemas Operativos?
+Después podés seguir con *"resumime el apunte de la unidad 4"* o *"haceme preguntas de repaso de la unidad 5"*.
 
-Claude busca el id de la materia con `materias` y después llama a `avisos`. Te devuelve los últimos avisos completos, con autor, fecha y texto (por ejemplo, cambios de horario o fechas de parcial).
+### Fechas de parciales
 
-**Estudiar con el material**
-> Bajate el apunte de la unidad 2 de Análisis Matemático II y haceme un resumen.
+> Cuándo es el segundo parcial de Ciencia de Datos?
 
-Claude usa `contenido_materia` para encontrar el recurso y `leer` para descargar el PDF en `~/Downloads/campus/`. Después lo lee y te lo resume.
+Claude lee la página "Calendario y entregas" de la materia y los avisos, y cruza la información:
 
-**Estado de las tareas**
-> ¿Qué TPs me faltan entregar en Física II?
+```
+El Parcial 2 de Ciencia de Datos es el miércoles 4/11 (clase 12), según la
+página "Calendario y entregas" del campus.
 
-`entregas` trae la tabla de tareas de la materia con su estado.
+- Temas: Unidad 3 (Machine Learning, supervisado y no supervisado) y
+  Unidad 4 (Visualización con Altair).
+- Horario: todavía no se publicó. Para el Parcial 1 avisaron la hora unos días
+  antes y fue distinta en cada comisión: 5K09 de 14:30 a 16:00, 5K10 a las 21:30.
+- Aprobación: el que tiene que llegar a 60 es el promedio de los dos parciales,
+  no cada parcial por separado.
+- Recuperatorio: miércoles 18/11, junto con el del Parcial 1. Lo puede rendir
+  cualquiera, y se queda la nota más alta.
+```
 
-**Más ideas**
+### Más ideas
+
+- "¿Qué entregas tengo en los próximos días?"
+- "¿Hay avisos nuevos en alguna materia?"
+- "¿Qué TPs me faltan entregar?"
 - "¿Cuándo es el próximo parcial de cada materia?"
 - "Armame un calendario de estudio con todos los vencimientos de noviembre."
 - "Leé la consigna del TP 3 de AM2 y explicame qué piden."
@@ -103,6 +125,52 @@ Editá el archivo de configuración:
 ```
 
 Reiniciá Claude Desktop.
+
+### Gemini (Gemini CLI)
+
+Instalá [Gemini CLI](https://github.com/google-gemini/gemini-cli) y agregá esto a `~/.gemini/settings.json`. Si el archivo ya tiene contenido, sumá solo la entrada `campus` dentro de `mcpServers`:
+
+```json
+{
+  "mcpServers": {
+    "campus": {
+      "command": "/ruta/completa/a/campus-utn-frm-mcp/.venv/bin/python",
+      "args": ["/ruta/completa/a/campus-utn-frm-mcp/campus_mcp.py"],
+      "env": {
+        "CAMPUS_USER": "tu_usuario",
+        "CAMPUS_PASS": "tu_contraseña"
+      }
+    }
+  }
+}
+```
+
+Abrí `gemini` y verificá con `/mcp` que `campus` aparezca.
+
+> La web y la app de Gemini (gemini.google.com) no permiten conectar servidores MCP locales. Funciona solo con Gemini CLI.
+
+### ChatGPT (Codex CLI)
+
+ChatGPT en la web o la app de escritorio solo se conecta a servidores MCP **remotos** (una URL pública por HTTPS). Este servidor corre en tu compu con tu sesión del campus. Publicarlo en internet le daría acceso a tu cuenta a cualquiera que tenga la URL, así que **no lo recomendamos**.
+
+En su lugar usá [Codex CLI](https://github.com/openai/codex), el agente de terminal de OpenAI. Funciona con tu cuenta de ChatGPT y sí soporta MCP local. Desde la carpeta del repo:
+
+```sh
+codex mcp add campus \
+  --env CAMPUS_USER=tu_usuario --env CAMPUS_PASS=tu_contraseña \
+  -- "$(pwd)/.venv/bin/python" "$(pwd)/campus_mcp.py"
+```
+
+O agregalo a mano en `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.campus]
+command = "/ruta/completa/a/campus-utn-frm-mcp/.venv/bin/python"
+args = ["/ruta/completa/a/campus-utn-frm-mcp/campus_mcp.py"]
+env = { CAMPUS_USER = "tu_usuario", CAMPUS_PASS = "tu_contraseña" }
+```
+
+Abrí `codex` y verificá con `/mcp` que `campus` aparezca.
 
 ### Configuración
 
