@@ -1,6 +1,6 @@
 # Campus UTN FRM — MCP
 
-Servidor [MCP](https://modelcontextprotocol.io) para que Claude (o cualquier cliente MCP) entre al **Campus Virtual de la UTN FRM** con tu usuario. Con él podés preguntarle cosas como *"¿qué tengo que entregar esta semana?"* o *"resumime el último apunte de Física"* sin abrir el campus.
+Servidor [MCP](https://modelcontextprotocol.io) para que Claude, ChatGPT, Gemini o cualquier IA entre al **Campus Virtual de la UTN FRM** con tu usuario. Con él podés preguntarle cosas como *"¿qué tengo que entregar esta semana?"* o *"resumime el último apunte de Física"* sin abrir el campus.
 
 > ⚠️ Proyecto no oficial, hecho por estudiantes. No está afiliado a la UTN.
 
