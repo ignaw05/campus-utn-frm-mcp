@@ -61,14 +61,29 @@ página "Calendario y entregas" del campus.
   cualquiera, y se queda la nota más alta.
 ```
 
-### Más ideas
+## Qué le podés preguntar
+
+### Repasar con los apuntes de la cátedra
+
+- "Resumime la guía de la unidad 3 de Sistemas Operativos."
+- "Armame 10 preguntas de opción múltiple con el apunte de calorimetría de Física II."
+- "Explicame el teorema que aparece en la página 4 del PDF de Análisis Matemático, paso a paso."
+
+La IA trabaja sobre el material que subió tu cátedra, no sobre lo que encuentra en internet. El MCP descarga los archivos y después tu cliente los lee. Claude lee PDF (también escaneados) e imágenes. Para Word, PowerPoint o Excel depende de las herramientas que tenga tu cliente.
+
+### No perderte ningún aviso
+
+- "¿Qué avisó la profesora de Física esta semana?"
+- "¿Cuándo es el recuperatorio del primer parcial de Álgebra?"
+- "¿Hay algo nuevo en los foros de mis materias desde el lunes?"
+
+### Organizar la cursada
 
 - "¿Qué entregas tengo en los próximos días?"
-- "¿Hay avisos nuevos en alguna materia?"
-- "¿Qué TPs me faltan entregar?"
-- "¿Cuándo es el próximo parcial de cada materia?"
+- "¿Qué pide la consigna del TP 2 de Paradigmas de Programación?"
+- "Pasame el link para bajar el apunte de la clase 5 de Química General."
+- "¿Qué nota me pusieron en el TP 1 y qué me corrigieron?"
 - "Armame un calendario de estudio con todos los vencimientos de noviembre."
-- "Leé la consigna del TP 3 de AM2 y explicame qué piden."
 
 ## Instalación
 
