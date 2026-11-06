@@ -17,6 +17,8 @@ Servidor [MCP](https://modelcontextprotocol.io) para que Claude, ChatGPT, Gemini
 
 No hace falta llamar a las herramientas a mano: le hablás a Claude normalmente y él decide cuáles usar.
 
+📖 Parámetros, formato de respuesta y limitaciones de cada una en [`docs/tools.md`](docs/tools.md).
+
 ## Ejemplos
 
 Estas respuestas son conversaciones reales con Claude Code.
@@ -213,7 +215,7 @@ Abrí `codex` y verificá con `/mcp` que `campus` aparezca.
 
 ## Cómo funciona
 
-El servidor hace login en el campus (Moodle) igual que el navegador y usa la API AJAX interna de Moodle (`/lib/ajax/service.php`) para las materias, el contenido y los vencimientos. Lo que no está en esa API (tareas, avisos y páginas en general) lo saca del HTML y lo convierte a texto. Todo el código está en un solo archivo: [`campus_mcp.py`](campus_mcp.py).
+El servidor hace login en el campus (Moodle) igual que el navegador y usa la API AJAX interna de Moodle (`/lib/ajax/service.php`) para las materias, el contenido y los vencimientos. Lo que no está en esa API (tareas, avisos y páginas en general) lo saca del HTML y lo convierte a texto. Todo el código está en un solo archivo: [`campus_mcp.py`](campus_mcp.py). En [`docs/tools.md`](docs/tools.md) está qué endpoint de Moodle usa cada herramienta.
 
 ## Contribuir
 
